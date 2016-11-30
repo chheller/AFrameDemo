@@ -1,0 +1,92 @@
+extends layout
+
+
+
+
+
+
+block content
+  
+  script(src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+  script(src="https://aframe.io/releases/0.3.2/aframe.min.js")
+  script(type='text/javascript' src='/javascripts/aframe.js')
+  style.
+    a-scene { display: block; width: 100%; height:500px}
+    label {
+      width:120px;
+      clear:left;
+      text-align:right;
+      padding-right:10px;
+    }
+
+  div(class='text-center')
+    div.row
+      div.col-md-1
+      div.col-md-10
+        h1 A-Frame Demo
+        input#showcubes(type="button" name="showcubes" value="Show Cubes" style="padding-left: 5px padding-right: 5px")
+        input#showspheres(type="button" name="showspheres" value="Show Spheres" style="padding-left: 5px padding-right: 5px")
+        input#showcylinders(type="button" name="showcylinders" value="Show cylinders" style="padding-left: 5px padding-right: 5px")
+          
+        div.row
+          br
+          input#clearcubes(type="button" name="clearcubes" value="Clear Cubes" style="padding-left: 5px padding-right: 5px")
+          input#clearspheres(type="button" name="clearspheres" value="Clear Spheres" style="padding-left: 5px padding-right: 5px")
+          input#clearcylinders(type="button" name="clearcylinders" value="Clear cylinders" style="padding-left: 5px padding-right: 5px")
+        br
+        a-scene#shapes(embedded='')
+          a-plane(position='0 0 -4', rotation='-90 0 0', width='4', height='4', color='#7BC8A4')
+          //- | <a-box position= "10 10 10", rotation= "0 45 0", color= "#AB334F", depth= 5, width= 5 height= 1></a-box>
+          //- | <a-box position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1"  color="#4CC3D9"></a-box>
+          a-sky(color='#ECECEC')
+      div.col-md-1
+    div.row
+      br
+      form.shapeform(action="/AFrameForm" method="post" id="formsubmit")
+        div.col-md-1
+        div.col-md-10(class="text-left")
+          div.row
+            label Cube
+            input.shape(type="radio" name="shape_filter" value=0 checked) 
+            label X-Position: 
+            input(type="number" name="posx" style="width:50px" value=0 id="posx")
+            label X-Rotation: 
+            input(type="number" name="rotx" style="width:50px" value=0 id="rotx")
+      
+            label.cube Height: 
+            input.cube(type="number" name = "cubeheight" style="width:50px" value=1 id="cubeheight")
+          
+            label.sphere Radius: 
+            input.sphere(type = "number" name = "radius" style="width:50px" value=1 id="radius")
+            label Color:
+            input.color(type = "string" name = "color" style="width:60px" value="000000" id="color")
+          
+          div.row
+            label Sphere
+            input.shape(type="radio" name="shape_filter" value=1)    
+            label Y-Position: 
+            input(type="number" name="posy" style="width:50px" value=0 id="posy")
+            label Y-Rotation: 
+            input(type="number" name="roty" style="width:50px" value=0 id="roty") 
+            
+            label.cube Width: 
+            input.cube(type="number" name = "width" style="width: 50px" value=1 id="width")
+            
+            label.cylinder Height:
+            input.cylinder(type="number" name="height" style="width: 50px" value=1 id="height")
+            
+            
+              
+          div.row
+            label cylinder
+            input.shape(type="radio" name="shape_filter" value=2) 
+            label Z-Position: 
+            input(type="number" name="posz" style="width: 50px" value=0 id="posz")
+            label Z-Rotation: 
+            input(type="number" name="rotz" style="width: 50px"  value=0 id="rotz")
+            
+            label.cube Depth:
+            input.cube(type="number" name="depth" style="width: 50px" value=1 id="depth")
+          div.row(class="text-right")
+            input(type="submit" name="submit" value="submit" style="margin-left: 40px" )
+        div.col-md-1
